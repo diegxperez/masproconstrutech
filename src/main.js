@@ -1,3 +1,5 @@
 import './css/input.css';
+import router from './routes';
 
-console.log('Hello world');
+window.addEventListener('load', router);
+window.addEventListener('hashchange', router);
