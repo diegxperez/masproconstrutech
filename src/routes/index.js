@@ -18,10 +18,18 @@ const router = async () => {
   const header = document.getElementById('header') || null;
   const content = document.getElementById('content') || null;
 
-  header.innerHTML = Header();
   let hash = getHash();
   let route = await resolveRoutes(hash);
   let render = routes[route] ? routes[route] : Error404;
+
+  // Si estamos en la página principal (mantenimiento), ocultamos el header para un diseño más limpio y centrado
+  if (route === '/') {
+    header.style.display = 'none';
+  } else {
+    header.style.display = 'flex';
+    header.innerHTML = Header();
+  }
+
   content.innerHTML = await render();
 };
 
